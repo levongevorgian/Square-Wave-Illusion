@@ -1,0 +1,548 @@
+[
+  {
+    "family": "free",
+    "seed": 71,
+    "parameters": [
+      0.0023165204519644544,
+      0.027533627617127243,
+      0.03485795404298825,
+      0.026175030020382017,
+      -0.001307533955350354,
+      -0.028849041588367763,
+      -0.035721576177174696,
+      141.61587949964783,
+      14.326390475293088,
+      16.8850862991233
+    ],
+    "heights": [
+      0.0023165204519644544,
+      0.027533627617127243,
+      0.03485795404298825,
+      0.026175030020382017,
+      -0.001307533955350354,
+      -0.028849041588367763,
+      -0.035721576177174696,
+      -0.02500498041156915
+    ],
+    "mean_light_vector": [
+      -0.7594888171208396,
+      0.6016207712082219,
+      0.2474453158158635
+    ],
+    "azimuth_deg": 141.61587949964783,
+    "elevation_deg": 14.326390475293088,
+    "kappa": 16.8850862991233,
+    "objective": 0.005973402329421504,
+    "training_metrics": {
+      "rmse": 0.0772232866370262,
+      "mae": 0.06397158322273226,
+      "max_abs_error": 0.11098156723523278,
+      "mean_luminance": 0.9994755785418912,
+      "sampled_Michelson_contrast": 0.4598451262907364,
+      "r_squared": 0.949957180427768
+    },
+    "selected_candidate": "differential evolution",
+    "global_optimizer_success": false,
+    "global_optimizer_message": "Maximum number of iterations has been exceeded.",
+    "global_evaluations": 8470,
+    "local_optimizer_success": true,
+    "local_optimizer_message": "Optimization terminated successfully.",
+    "seconds": 5.393257167001138,
+    "evaluation_directions": 16384,
+    "evaluation_samples_per_segment": 15,
+    "evaluation_metrics": {
+      "rmse": 0.08321575052174875,
+      "mae": 0.07188052271251283,
+      "max_abs_error": 0.14996728571497586,
+      "mean_luminance": 0.9996182008471998,
+      "sampled_Michelson_contrast": 0.4596182517224448,
+      "r_squared": 0.9422767896507536
+    },
+    "max_abs_height": 0.035721576177174696,
+    "max_abs_slope": 0.22033206106413927,
+    "label": "N8",
+    "config": {
+      "segments": 8,
+      "directions": 1024,
+      "samples_per_segment": 3,
+      "seeds": [
+        71
+      ],
+      "maxiter": 120,
+      "popsize": 7,
+      "curvature_weight": 1e-05,
+      "height_bound": 0.25,
+      "slope_bound": 6.0,
+      "target_mean": 1.0,
+      "target_contrast": 0.6,
+      "azimuth_bounds": [
+        0.0,
+        180.0
+      ],
+      "elevation_bounds": [
+        5.0,
+        85.0
+      ],
+      "kappa_bounds": [
+        0.0,
+        30.0
+      ]
+    }
+  },
+  {
+    "family": "free",
+    "seed": 71,
+    "parameters": [
+      0.0018063361738713652,
+      0.009606653940788289,
+      0.016024735950076942,
+      0.021363096102666825,
+      0.025653698386595036,
+      0.02889538995979716,
+      0.031116134371148723,
+      0.032383196381268756,
+      0.032711273863228536,
+      0.032102137561408624,
+      0.03053959078029336,
+      0.027992697601413236,
+      0.024435219925533238,
+      0.01981566441083978,
+      0.014066058919160653,
+      0.0071001154283328255,
+      -0.0011884757803515258,
+      -0.009477169231123374,
+      -0.016450977581861072,
+      -0.02210291307023723,
+      -0.026458068156645632,
+      -0.0296566161867766,
+      -0.03202526587798216,
+      -0.03324811812994002,
+      -0.03331865063061564,
+      -0.03229283816371308,
+      -0.03033077081844707,
+      -0.027505742584166902,
+      -0.023726515059027942,
+      -0.01886615382646434,
+      -0.01297757131728596,
+      141.395150132306,
+      14.558861694077393,
+      21.739444689868336
+    ],
+    "heights": [
+      0.0018063361738713648,
+      0.009606653940788289,
+      0.016024735950076942,
+      0.021363096102666825,
+      0.025653698386595036,
+      0.02889538995979716,
+      0.031116134371148723,
+      0.032383196381268756,
+      0.032711273863228536,
+      0.032102137561408624,
+      0.03053959078029336,
+      0.027992697601413236,
+      0.024435219925533238,
+      0.01981566441083978,
+      0.014066058919160653,
+      0.007100115428332825,
+      -0.0011884757803515265,
+      -0.009477169231123374,
+      -0.016450977581861072,
+      -0.02210291307023723,
+      -0.026458068156645632,
+      -0.0296566161867766,
+      -0.03202526587798216,
+      -0.03324811812994002,
+      -0.03331865063061564,
+      -0.03229283816371308,
+      -0.03033077081844707,
+      -0.027505742584166902,
+      -0.023726515059027942,
+      -0.01886615382646434,
+      -0.01297757131728596,
+      -0.005986153341784781
+    ],
+    "mean_light_vector": [
+      -0.756374660994799,
+      0.6039107909294286,
+      0.25137447922172806
+    ],
+    "azimuth_deg": 141.395150132306,
+    "elevation_deg": 14.558861694077393,
+    "kappa": 21.739444689868336,
+    "objective": 0.0004009002348558743,
+    "training_metrics": {
+      "rmse": 0.019732669448015168,
+      "mae": 0.016287924598723753,
+      "max_abs_error": 0.029602708490491514,
+      "mean_luminance": 0.9999972956550481,
+      "sampled_Michelson_contrast": 0.5623419263960685,
+      "r_squared": 0.996753772350822
+    },
+    "selected_candidate": "final Powell refinement",
+    "global_optimizer_success": false,
+    "global_optimizer_message": "Maximum number of iterations has been exceeded.",
+    "global_evaluations": 28798,
+    "local_optimizer_success": true,
+    "local_optimizer_message": "Optimization terminated successfully.",
+    "seconds": 31.220466459009913,
+    "evaluation_directions": 16384,
+    "evaluation_samples_per_segment": 15,
+    "evaluation_metrics": {
+      "rmse": 0.021104226773611172,
+      "mae": 0.018127183310508766,
+      "max_abs_error": 0.04453163188040232,
+      "mean_luminance": 0.9999800567841614,
+      "sampled_Michelson_contrast": 0.5641656654299952,
+      "r_squared": 0.9962883656643038
+    },
+    "max_abs_height": 0.03331865063061564,
+    "max_abs_slope": 0.26523819042469915,
+    "label": "N32",
+    "config": {
+      "segments": 32,
+      "directions": 1024,
+      "samples_per_segment": 3,
+      "seeds": [
+        71
+      ],
+      "maxiter": 120,
+      "popsize": 7,
+      "curvature_weight": 1e-05,
+      "height_bound": 0.25,
+      "slope_bound": 6.0,
+      "target_mean": 1.0,
+      "target_contrast": 0.6,
+      "azimuth_bounds": [
+        0.0,
+        180.0
+      ],
+      "elevation_bounds": [
+        5.0,
+        85.0
+      ],
+      "kappa_bounds": [
+        0.0,
+        30.0
+      ]
+    }
+  },
+  {
+    "family": "free",
+    "seed": 71,
+    "parameters": [
+      0.0019250143662247199,
+      0.016174804998609127,
+      0.025879151835807412,
+      0.03141801614363776,
+      0.03303425640665347,
+      0.030860725234756414,
+      0.024726135740103905,
+      0.014282230067266588,
+      -0.0011647081663284098,
+      -0.01663644730985059,
+      -0.026803074900383528,
+      -0.0323052011960539,
+      -0.033733402018445935,
+      -0.030742078845348825,
+      -0.023911133145920083,
+      140.31734707021027,
+      14.558187962030917,
+      22.0224147841795
+    ],
+    "heights": [
+      0.0019250143662247199,
+      0.016174804998609127,
+      0.025879151835807412,
+      0.03141801614363776,
+      0.03303425640665347,
+      0.030860725234756414,
+      0.024726135740103905,
+      0.014282230067266588,
+      -0.0011647081663284098,
+      -0.01663644730985059,
+      -0.026803074900383528,
+      -0.0323052011960539,
+      -0.033733402018445935,
+      -0.030742078845348825,
+      -0.023911133145920083,
+      -0.013004289210728132
+    ],
+    "mean_light_vector": [
+      -0.7448834896890916,
+      0.6180333160784391,
+      0.2513630979393935
+    ],
+    "azimuth_deg": 140.31734707021027,
+    "elevation_deg": 14.558187962030917,
+    "kappa": 22.0224147841795,
+    "objective": 0.0015065289629459498,
+    "training_metrics": {
+      "rmse": 0.03881403049086696,
+      "mae": 0.032204787225776514,
+      "max_abs_error": 0.06258718869687807,
+      "mean_luminance": 0.9994328013305603,
+      "sampled_Michelson_contrast": 0.5283289408239075,
+      "r_squared": 0.9874237582223643
+    },
+    "selected_candidate": "differential evolution",
+    "global_optimizer_success": false,
+    "global_optimizer_message": "Maximum number of iterations has been exceeded.",
+    "global_evaluations": 15246,
+    "local_optimizer_success": true,
+    "local_optimizer_message": "Optimization terminated successfully.",
+    "seconds": 8.147578167001484,
+    "evaluation_directions": 16384,
+    "evaluation_samples_per_segment": 15,
+    "evaluation_metrics": {
+      "rmse": 0.041575832942786245,
+      "mae": 0.0358839723272975,
+      "max_abs_error": 0.08145764910221587,
+      "mean_luminance": 0.9993169631694943,
+      "sampled_Michelson_contrast": 0.5288113798031233,
+      "r_squared": 0.9855944172382543
+    },
+    "max_abs_height": 0.033733402018445935,
+    "max_abs_slope": 0.24754782629635486,
+    "label": "no_smoothness",
+    "config": {
+      "segments": 16,
+      "directions": 1024,
+      "samples_per_segment": 3,
+      "seeds": [
+        71
+      ],
+      "maxiter": 120,
+      "popsize": 7,
+      "curvature_weight": 0.0,
+      "height_bound": 0.25,
+      "slope_bound": 6.0,
+      "target_mean": 1.0,
+      "target_contrast": 0.6,
+      "azimuth_bounds": [
+        0.0,
+        180.0
+      ],
+      "elevation_bounds": [
+        5.0,
+        85.0
+      ],
+      "kappa_bounds": [
+        0.0,
+        30.0
+      ]
+    }
+  },
+  {
+    "family": "free",
+    "seed": 71,
+    "parameters": [
+      0.001959365451772662,
+      0.016217794414592167,
+      0.025955307718371082,
+      0.03146042054796597,
+      0.03307474787960871,
+      0.03090233415140178,
+      0.024761392874244913,
+      0.014210380845096049,
+      -0.0012535560494818935,
+      -0.016711440497619218,
+      -0.026910816937258317,
+      -0.032411524974560554,
+      -0.03375503835692087,
+      -0.03068136995371859,
+      -0.023874336168223122,
+      140.86384187120328,
+      14.541975375814928,
+      21.33698818219967
+    ],
+    "heights": [
+      0.001959365451772662,
+      0.016217794414592167,
+      0.025955307718371082,
+      0.03146042054796597,
+      0.03307474787960871,
+      0.03090233415140178,
+      0.024761392874244913,
+      0.014210380845096049,
+      -0.0012535560494818935,
+      -0.016711440497619218,
+      -0.026910816937258317,
+      -0.032411524974560554,
+      -0.03375503835692087,
+      -0.03068136995371859,
+      -0.023874336168223122,
+      -0.012943660945270764
+    ],
+    "mean_light_vector": [
+      -0.7507995407154164,
+      0.6109453807680522,
+      0.2510892100025399
+    ],
+    "azimuth_deg": 140.86384187120328,
+    "elevation_deg": 14.541975375814928,
+    "kappa": 21.33698818219967,
+    "objective": 0.0016114637572778514,
+    "training_metrics": {
+      "rmse": 0.03878955844261234,
+      "mae": 0.032078546444534124,
+      "max_abs_error": 0.06154911863009205,
+      "mean_luminance": 0.9998875023588104,
+      "sampled_Michelson_contrast": 0.5275922192506117,
+      "r_squared": 0.9874396117356007
+    },
+    "selected_candidate": "final Powell refinement",
+    "global_optimizer_success": false,
+    "global_optimizer_message": "Maximum number of iterations has been exceeded.",
+    "global_evaluations": 15246,
+    "local_optimizer_success": true,
+    "local_optimizer_message": "Optimization terminated successfully.",
+    "seconds": 10.230115917001967,
+    "evaluation_directions": 16384,
+    "evaluation_samples_per_segment": 15,
+    "evaluation_metrics": {
+      "rmse": 0.04156323455202698,
+      "mae": 0.035879800128722925,
+      "max_abs_error": 0.08047170909755619,
+      "mean_luminance": 0.9997524654292211,
+      "sampled_Michelson_contrast": 0.5280529733407395,
+      "r_squared": 0.9856031463316052
+    },
+    "max_abs_height": 0.03375503835692087,
+    "max_abs_slope": 0.24742299031324708,
+    "label": "stronger_smoothness",
+    "config": {
+      "segments": 16,
+      "directions": 1024,
+      "samples_per_segment": 3,
+      "seeds": [
+        71
+      ],
+      "maxiter": 120,
+      "popsize": 7,
+      "curvature_weight": 0.0001,
+      "height_bound": 0.25,
+      "slope_bound": 6.0,
+      "target_mean": 1.0,
+      "target_contrast": 0.6,
+      "azimuth_bounds": [
+        0.0,
+        180.0
+      ],
+      "elevation_bounds": [
+        5.0,
+        85.0
+      ],
+      "kappa_bounds": [
+        0.0,
+        30.0
+      ]
+    }
+  },
+  {
+    "family": "free",
+    "seed": 71,
+    "parameters": [
+      0.001987180475342611,
+      0.016268578933495773,
+      0.02600044127569576,
+      0.03149666199503986,
+      0.03310316796714099,
+      0.030915720069338102,
+      0.02474757550038921,
+      0.014221275098309748,
+      -0.0012702563884910629,
+      -0.016767553753996748,
+      -0.026956089320056047,
+      -0.03244930124467416,
+      -0.03378315684959301,
+      -0.030709606792517948,
+      -0.023873574574815905,
+      141.28657455239173,
+      14.519979929383872,
+      20.76180607560852
+    ],
+    "heights": [
+      0.0019871804753426106,
+      0.016268578933495773,
+      0.02600044127569576,
+      0.03149666199503986,
+      0.03310316796714099,
+      0.030915720069338102,
+      0.02474757550038921,
+      0.014221275098309748,
+      -0.001270256388491063,
+      -0.016767553753996748,
+      -0.026956089320056047,
+      -0.03244930124467416,
+      -0.03378315684959301,
+      -0.030709606792517948,
+      -0.023873574574815905,
+      -0.012931062390607165
+    ],
+    "mean_light_vector": [
+      -0.755361823774724,
+      0.6054495864700756,
+      0.2507175969630719
+    ],
+    "azimuth_deg": 141.28657455239173,
+    "elevation_deg": 14.519979929383872,
+    "kappa": 20.76180607560852,
+    "objective": 0.0015150136479522938,
+    "training_metrics": {
+      "rmse": 0.03878515959826579,
+      "mae": 0.032047398000862586,
+      "max_abs_error": 0.0610947428725892,
+      "mean_luminance": 0.9998961477454885,
+      "sampled_Michelson_contrast": 0.5277865839390258,
+      "r_squared": 0.9874424603403441
+    },
+    "selected_candidate": "final Powell refinement",
+    "global_optimizer_success": false,
+    "global_optimizer_message": "Maximum number of iterations has been exceeded.",
+    "global_evaluations": 15246,
+    "local_optimizer_success": true,
+    "local_optimizer_message": "Optimization terminated successfully.",
+    "seconds": 15.850263959000586,
+    "evaluation_directions": 16384,
+    "evaluation_samples_per_segment": 15,
+    "evaluation_metrics": {
+      "rmse": 0.041541128818808094,
+      "mae": 0.03585589242117562,
+      "max_abs_error": 0.08003194283503867,
+      "mean_luminance": 0.9997350837928358,
+      "sampled_Michelson_contrast": 0.5282276204325653,
+      "r_squared": 0.9856184564188557
+    },
+    "max_abs_height": 0.03378315684959301,
+    "max_abs_slope": 0.24795675784809096,
+    "label": "kappa60",
+    "config": {
+      "segments": 16,
+      "directions": 1024,
+      "samples_per_segment": 3,
+      "seeds": [
+        71
+      ],
+      "maxiter": 120,
+      "popsize": 7,
+      "curvature_weight": 1e-05,
+      "height_bound": 0.25,
+      "slope_bound": 6.0,
+      "target_mean": 1.0,
+      "target_contrast": 0.6,
+      "azimuth_bounds": [
+        0.0,
+        180.0
+      ],
+      "elevation_bounds": [
+        5.0,
+        85.0
+      ],
+      "kappa_bounds": [
+        0.0,
+        60.0
+      ]
+    }
+  }
+]

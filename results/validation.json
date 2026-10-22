@@ -1,0 +1,17 @@
+{
+  "unit_sphere_vectors": true,
+  "flat_uniform_radiance_is_one": true,
+  "vmf_normalization_kappa_0": true,
+  "vmf_normalization_kappa_1": true,
+  "vmf_normalization_kappa_8": true,
+  "vmf_normalization_kappa_30": true,
+  "overhead_light_unblocked": true,
+  "overhead_cosine_law": true,
+  "light_from_below_blocked": true,
+  "horizons_match_independent_ray_intersections": true,
+  "test_case_contains_cast_shadows": true,
+  "vertical_translation_invariance": true,
+  "ridge_direction_reflection_invariance": true,
+  "shadows_cannot_increase_direct_radiance": true,
+  "nonnegative_output": true
+}

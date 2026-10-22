@@ -1,0 +1,45 @@
+{
+  "stage": "forward simulation; no fitting performed",
+  "segments_per_cycle": 32,
+  "samples_per_segment": 7,
+  "directions_for_demo": 4096,
+  "period": 1,
+  "amplitude": 0.12,
+  "albedo": 1,
+  "directional_light": {
+    "azimuth_deg": 180,
+    "elevation_deg": 30,
+    "kappa": 8
+  },
+  "target": {
+    "provisional": true,
+    "mean": 1,
+    "Michelson_contrast": 0.6
+  },
+  "sphere_sampling_convergence": [
+    {
+      "directions": 512,
+      "rmse_vs_16384": 0.014601373475709747
+    },
+    {
+      "directions": 1024,
+      "rmse_vs_16384": 0.008244676250624822
+    },
+    {
+      "directions": 2048,
+      "rmse_vs_16384": 0.0049785427601808365
+    },
+    {
+      "directions": 4096,
+      "rmse_vs_16384": 0.0029786246780212156
+    },
+    {
+      "directions": 8192,
+      "rmse_vs_16384": 0.0018150228478425374
+    },
+    {
+      "directions": 16384,
+      "rmse_vs_16384": 0.0
+    }
+  ]
+}

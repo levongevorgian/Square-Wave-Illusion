@@ -1,0 +1,16 @@
+{
+  "segments": 16,
+  "directions": 1024,
+  "samples_per_segment": 3,
+  "seeds": [11, 29, 47],
+  "maxiter": 160,
+  "popsize": 7,
+  "curvature_weight": 0.00001,
+  "height_bound": 0.25,
+  "slope_bound": 6.0,
+  "target_mean": 1.0,
+  "target_contrast": 0.6,
+  "azimuth_bounds": [0.0, 180.0],
+  "elevation_bounds": [5.0, 85.0],
+  "kappa_bounds": [0.0, 30.0]
+}
