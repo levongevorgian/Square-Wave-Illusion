@@ -1,4 +1,4 @@
-# Results for group and professor review
+# Simulation results
 
 Generated from `results/optimization/analysis.json`. These are deterministic simulations using the provisional target, not measurements from participants.
 
@@ -62,4 +62,4 @@ The target is an ideal mathematical triangle wave with provisional mean, contras
 - `results/validation.json`: 15 physical/numerical checks.
 - `test_project.py`: eight regression tests, including synthetic kappa recovery.
 
-The implementation is ready for review. Final scientific interpretation depends on agreeing with the professor on the exact target, admissible surface class, light assumptions, and success criterion. See [the review checklist](PROFESSOR_REVIEW.md).
+The findings apply to the specified target, surface class, lighting assumptions, and optimization bounds. See [limitations and future work](LIMITATIONS.md).

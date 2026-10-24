@@ -1,6 +1,6 @@
 # Methods and scope
 
-Status: computational implementation for group/professor review, 22 October 2026. No human-participant data were collected. The current target is provisional.
+Computational study, 22 October 2026. No human-participant data were collected. The current target is provisional.
 
 ## Research question
 
@@ -40,7 +40,7 @@ vMF definition reference: [SciPy documentation](https://docs.scipy.org/doc/scipy
 
 `T(x)=1+0.6*(4*abs((x mod 1)-0.5)-1)`.
 
-The period is one, the mean is one, and Michelson contrast is 0.6, giving a continuous range 0.4 to 1.6. The peak is at phase zero. These are explicit choices for a synthetic baseline; they do not claim exact reproduction of the historical stimuli or final specifications from the instructor. Evaluate errors on the linear profile, not on the sRGB preview.
+The period is one, the mean is one, and Michelson contrast is 0.6, giving a continuous range 0.4 to 1.6. The peak is at phase zero. These are explicit choices for a synthetic baseline; they do not claim exact reproduction of the historical stimuli or a calibrated experimental display. Evaluate errors on the linear profile, not on the sRGB preview.
 
 ## Optimization
 

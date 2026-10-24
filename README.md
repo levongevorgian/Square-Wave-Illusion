@@ -1,10 +1,10 @@
 # Square-wave illusion: physical simulation
 
-**Design and Analysis of Experiments | Group 2 | Review draft, 22 October 2026**
+**Design and Analysis of Experiments | Group 2 | Computational study, 22 October 2026**
 
 Can a corrugated matte surface under directional environmental illumination reproduce the triangle-wave luminance pattern associated with the square-wave illusion?
 
-**All six computational steps are implemented**, including joint geometry-and-lighting optimization. This is a reproducible research prototype with saved candidate fits, not an approved final course submission. The target and physical constraints are provisional choices for professor review.
+**All six computational steps are implemented**, including joint geometry-and-lighting optimization. The repository includes reproducible candidate fits and numerical validation. The target and physical constraints define the baseline model studied here.
 
 ## Start here
 
@@ -12,8 +12,7 @@ Can a corrugated matte surface under directional environmental illumination repr
 - **[Executed notebook](simulation_walkthrough.ipynb)**: model explanation, plots, and saved fitted results.
 - **[Results and interpretation](docs/RESULTS.md)**
 - **[Detailed methods](docs/METHODS.md)**
-- **[Professor review checklist](docs/PROFESSOR_REVIEW.md)**
-- **[How to upload this folder to GitHub](docs/GITHUB_GUIDE.md)**
+- **[Limitations and future work](docs/LIMITATIONS.md)**
 
 ## Current result
 
@@ -104,8 +103,6 @@ results/                       Generated figures, profiles, settings, fits
 .github/workflows/checks.yml   Automated checks on pushes/pull requests
 ```
 
-## Before final submission
+## Limitations and future work
 
-Agree with the professor on the exact target, permitted shape/light model, and error threshold; then rerun under those choices and revise the interpretation. No behavioral experiment is assumed. The group should confirm contributions and presentation requirements. See [the full checklist](docs/PROFESSOR_REVIEW.md).
-
-This folder is ready to upload as a repository. It has not been published to GitHub. No final author order or reuse license has been assigned. Supplied paper PDFs, emails, and unpublished collaborator material are not redistributed. See [references](docs/REFERENCES.md).
+The results are conditional on the baseline target and model assumptions. Further work can assess alternative targets, higher geometry resolution, additional illumination models, and perceptual validation. See [limitations and future work](docs/LIMITATIONS.md) and [references](docs/REFERENCES.md).

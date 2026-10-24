@@ -58,7 +58,7 @@ def build_summaries(data):
     free=fits['free']
     q={r['value']:r['rmse'] for r in data['convergence'] if r['varied']=='samples_per_segment'}
     m={r['value']:r['rmse'] for r in data['convergence'] if r['varied']=='directions'}
-    text=f'''# Results for group and professor review
+    text=f'''# Simulation results
 
 Generated from `results/optimization/analysis.json`. These are deterministic simulations using the provisional target, not measurements from participants.
 
@@ -108,16 +108,16 @@ The target is an ideal mathematical triangle wave with provisional mean, contras
 - `results/validation.json`: 15 physical/numerical checks.
 - `test_project.py`: eight regression tests, including synthetic kappa recovery.
 
-The implementation is ready for review. Final scientific interpretation depends on agreeing with the professor on the exact target, admissible surface class, light assumptions, and success criterion. See [the review checklist](PROFESSOR_REVIEW.md).
+The findings apply to the specified target, surface class, lighting assumptions, and optimization bounds. See [limitations and future work](LIMITATIONS.md).
 '''
     (ROOT/'docs'/'RESULTS.md').write_text(text)
     readme=f'''# Square-wave illusion: physical simulation
 
-**Design and Analysis of Experiments | Group 2 | Review draft, 22 October 2026**
+**Design and Analysis of Experiments | Group 2 | Computational study, 22 October 2026**
 
 Can a corrugated matte surface under directional environmental illumination reproduce the triangle-wave luminance pattern associated with the square-wave illusion?
 
-**All six computational steps are implemented**, including joint geometry-and-lighting optimization. This is a reproducible research prototype with saved candidate fits, not an approved final course submission. The target and physical constraints are provisional choices for professor review.
+**All six computational steps are implemented**, including joint geometry-and-lighting optimization. The repository includes reproducible candidate fits and numerical validation. The target and physical constraints define the baseline model studied here.
 
 ## Start here
 
@@ -125,8 +125,7 @@ Can a corrugated matte surface under directional environmental illumination repr
 - **[Executed notebook](simulation_walkthrough.ipynb)**: model explanation, plots, and saved fitted results.
 - **[Results and interpretation](docs/RESULTS.md)**
 - **[Detailed methods](docs/METHODS.md)**
-- **[Professor review checklist](docs/PROFESSOR_REVIEW.md)**
-- **[How to upload this folder to GitHub](docs/GITHUB_GUIDE.md)**
+- **[Limitations and future work](docs/LIMITATIONS.md)**
 
 ## Current result
 
@@ -210,11 +209,9 @@ results/                       Generated figures, profiles, settings, fits
 .github/workflows/checks.yml   Automated checks on pushes/pull requests
 ```
 
-## Before final submission
+## Limitations and future work
 
-Agree with the professor on the exact target, permitted shape/light model, and error threshold; then rerun under those choices and revise the interpretation. No behavioral experiment is assumed. The group should confirm contributions and presentation requirements. See [the full checklist](docs/PROFESSOR_REVIEW.md).
-
-This folder is ready to upload as a repository. It has not been published to GitHub. No final author order or reuse license has been assigned. Supplied paper PDFs, emails, and unpublished collaborator material are not redistributed. See [references](docs/REFERENCES.md).
+The results are conditional on the baseline target and model assumptions. Further work can assess alternative targets, higher geometry resolution, additional illumination models, and perceptual validation. See [limitations and future work](docs/LIMITATIONS.md) and [references](docs/REFERENCES.md).
 '''
     (ROOT/'README.md').write_text(readme)
 
@@ -223,7 +220,7 @@ def build_notebook():
     cells=[]
     def md(s):cells.append(nbformat.v4.new_markdown_cell(s))
     def code(s):cells.append(nbformat.v4.new_code_cell(s))
-    md('# Square-wave illusion: simulation and inverse rendering\n\nGroup/professor review draft, 22 October 2026. All six computational steps are implemented. This notebook explains the renderer and loads the saved optimization results; it does not silently run a long search. The target is provisional. See docs/METHODS.md and docs/PROFESSOR_REVIEW.md.')
+    md('# Square-wave illusion: simulation and inverse rendering\n\nComputational study, 22 October 2026. All six computational steps are implemented. This notebook explains the renderer and loads the saved optimization results; the searches can be reproduced separately. The target is provisional. See docs/METHODS.md and docs/LIMITATIONS.md.')
     code('import json\nfrom pathlib import Path\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom model import Surface, example_surface, sphere_directions, light_direction, render, triangle_target\nfrom validate import run_checks\nfrom fit import decode\nroot = Path.cwd()')
     md('## 1. Surface geometry\n\nN heights form a periodic, piecewise planar cross-section. The surface extends along Y. Height values are not luminance values. The last segment joins the next cycle.')
     code('surface = example_surface("sinusoid", segments=32, amplitude=0.12)\nplt.figure(figsize=(9, 2.8))\nplt.plot(np.arange(33)/32, np.r_[surface.heights, surface.heights[0]], ".-")\nplt.xlabel("X / period"); plt.ylabel("Height / period"); plt.show()')
@@ -237,7 +234,7 @@ def build_notebook():
     code('best = next(r for r in analysis["selected_fits"] if r["family"] == "free")\nfitted, mu, kappa = decode(best["parameters"], "free", analysis["config"]["segments"])\nx, y = render(fitted, sphere_directions(16384), mu, kappa, samples_per_segment=15)\nfig, axes = plt.subplots(1, 2, figsize=(11, 3.3))\naxes[0].plot(np.arange(17)/16, np.r_[fitted.heights, fitted.heights[0]], "o-")\naxes[0].set(xlabel="X / period", ylabel="Height / period", title="Fitted free geometry")\naxes[1].plot(x, triangle_target(x), label="Provisional target")\naxes[1].plot(x, y, label="Candidate render")\naxes[1].set(xlabel="X / period", ylabel="Relative linear luminance")\naxes[1].legend(); plt.tight_layout(); plt.show()\nprint("Lighting:", {key: best[key] for key in ("azimuth_deg", "elevation_deg", "kappa")})')
     md('## 6. Numerical resolution and sensitivity\n\nMidpoint-only evaluation can make the fit look almost exact while hiding variation within segments. Increasing N changes geometry flexibility; increasing the direction count checks the light integral for a fixed geometry. The N=32 case below is one additional warm-started search, not a three-seed comparison.')
     code('print("Within-segment sampling (same N=16 fit):")\nfor row in analysis["convergence"]:\n    if row["varied"] == "samples_per_segment":\n        print(f"{row[\'value\']:2d} samples: RMSE {row[\'rmse\']:.5f}")\nprint("Sensitivity cases:")\nfor record in analysis["sensitivity"]:\n    print(f"{record[\'label\']:20s} RMSE {record[\'evaluation_metrics\'][\'rmse\']:.5f}")')
-    md('## 7. Limits and next decisions\n\nThe global free-surface searches reached iteration limits; local Powell termination does not prove global optimality. The model excludes interreflection and overhangs. Shape and light are not uniquely identifiable from one profile. No participant study has been run. Confirm the exact target, admissible shapes, lighting constraints, and acceptable error with the professor before final course interpretation. See docs/RESULTS.md for the full findings and docs/PROFESSOR_REVIEW.md for the checklist.')
+    md('## 7. Limits and next decisions\n\nThe global free-surface searches reached iteration limits; local Powell termination does not prove global optimality. The model excludes interreflection and overhangs. Shape and light are not uniquely identifiable from one profile. No participant study has been run. Further evaluation can vary the target, admissible shapes, lighting constraints, and error tolerance. See docs/RESULTS.md for the full findings and docs/LIMITATIONS.md for limitations and future work.')
     notebook=nbformat.v4.new_notebook(cells=cells,metadata={'kernelspec':{'display_name':'Python 3','language':'python','name':'python3'},'language_info':{'name':'python','version':sys.version.split()[0]}})
     ns={}
     count=0
