@@ -1,0 +1,6 @@
+# Optional: edit the notebook and rebuild the PDF report.
+-r requirements.txt
+jupyterlab>=4.0
+ipykernel>=6.0
+reportlab>=4.0
+Pillow>=10.0

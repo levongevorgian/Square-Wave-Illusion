@@ -1,9 +1,9 @@
-"""Refine fits, evaluate dense quadrature, and generate review figures/tables."""
-import argparse
-import csv
+"""Refine fits, evaluate dense quadrature, and generate result figures."""
 import json
+import platform
 from pathlib import Path
 import numpy as np
+import scipy
 from scipy.optimize import minimize
 import matplotlib
 matplotlib.use("Agg")
@@ -11,8 +11,15 @@ import matplotlib.pyplot as plt
 from model import Surface, sphere_directions, render, triangle_target
 from fit import decode, encode_free, objective, metrics, bounds_for, fit_one
 
-ROOT = Path(__file__).resolve().parent
-OUT = ROOT/"results"/"optimization"
+ROOT = Path(__file__).resolve().parent.parent
+DATA = ROOT/"results"/"data"
+FIGURES = ROOT/"results"/"figures"
+
+
+def environment():
+    return {"python": platform.python_version(), "numpy": np.__version__, "scipy": scipy.__version__,
+            "matplotlib": matplotlib.__version__, "platform": platform.system(),
+            "note": "Timing depends on machine and BLAS settings."}
 
 
 def evaluated_record(record, config, count=16384, q=15):
@@ -26,7 +33,7 @@ def evaluated_record(record, config, count=16384, q=15):
 
 
 def run():
-    fits = json.loads((OUT/"fits.json").read_text())
+    fits = json.loads((DATA/"fits.json").read_text())
     if fits["status"] != "complete":
         raise ValueError("Finish fit.py first")
     config = fits["config"]
@@ -76,7 +83,6 @@ def run():
         record.update(label=label,config=cfg)
         sensitivity.append(record)
         print("Sensitivity",label,record["evaluation_metrics"]["rmse"],flush=True)
-        (OUT/"sensitivity.json").write_text(json.dumps(sensitivity,indent=2)+"\n")
 
     convergence = []
     surface,mu,k = decode(best["parameters"],"free",config["segments"])
@@ -89,25 +95,19 @@ def run():
         target=triangle_target(x,mean=config["target_mean"],contrast=config["target_contrast"])
         convergence.append({"varied":"samples_per_segment","value":q,**metrics(y,target)})
 
-    summary={"status":"complete", "target_is_provisional":True,"config":config,
+    summary={"status":"complete","environment":environment(),"target_is_provisional":True,"config":config,
              "refinement_config":fine,"selected_fits":selected,
              "all_seed_dense_evaluations":all_evaluated,"sensitivity":sensitivity,
              "convergence":convergence}
-    (OUT/"analysis.json").write_text(json.dumps(summary,indent=2)+"\n")
-    with (OUT/"model_comparison.csv").open("w",newline="") as f:
-        fields=["family","rmse","mae","max_abs_error","mean_luminance","sampled_Michelson_contrast","r_squared","azimuth_deg","elevation_deg","kappa"]
-        writer=csv.DictWriter(f,fields)
-        writer.writeheader()
-        for r in selected:
-            writer.writerow({"family":r["family"],**r["evaluation_metrics"],"azimuth_deg":r["azimuth_deg"],"elevation_deg":r["elevation_deg"],"kappa":r["kappa"]})
+    (DATA/"analysis.json").write_text(json.dumps(summary,indent=2)+"\n")
     plot_results(summary)
     return summary
 
 
 def plot_results(summary):
+    FIGURES.mkdir(parents=True, exist_ok=True)
     plt.rcParams.update({"font.size":10,"font.family":"DejaVu Sans","axes.spines.top":False,"axes.spines.right":False})
     fig,axes=plt.subplots(4,2,figsize=(12,12),layout="constrained")
-    profiles=[]
     names={"flat":"Flat control","sinusoid":"Fitted sinusoid","square_like":"Fitted square-like surface","free":"Fitted free surface (16 segments)"}
     for row,r in enumerate(summary["selected_fits"]):
         surface,mu,k=decode(r["parameters"],r["family"],summary["config"]["segments"])
@@ -121,12 +121,11 @@ def plot_results(summary):
         axes[row,1].set(title=f"Dense-grid RMSE = {r['evaluation_metrics']['rmse']:.4f}",xlabel="X / period",ylabel="Relative linear luminance",xlim=(0,1),ylim=(0.2,1.8))
         axes[row,1].grid(alpha=0.15)
         if row==0:axes[row,1].legend(fontsize=9)
-        profiles.extend((r["family"],float(a),float(b),float(c)) for a,b,c in zip(x,target,y))
     fig.suptitle("Inverse rendering | Target and fitted luminance\n16,384 light directions; 15 samples per segment",fontsize=16,fontweight="bold")
-    fig.savefig(OUT/"fitted_models.png",dpi=155)
+    fig.savefig(FIGURES/"4_model_comparison.png",dpi=155)
     plt.close(fig)
-    with (OUT/"fitted_profiles.csv").open("w",newline="") as f:
-        w=csv.writer(f);w.writerow(["family","x","target","prediction"]);w.writerows(profiles)
+
+    plot_best_fit(summary)
 
     fig,axes=plt.subplots(1,3,figsize=(13,4.3),layout="constrained")
     labels=["N=8","N=16","N=32"]
@@ -142,7 +141,34 @@ def plot_results(summary):
     axes[2].tick_params(axis="x",rotation=25)
     axes[2].set(title="Assumption sensitivity",ylabel="Dense-grid RMSE")
     fig.suptitle("Numerical checks | Sensitivity cases use one additional seed",fontsize=15)
-    fig.savefig(OUT/"sensitivity.png",dpi=155)
+    fig.savefig(FIGURES/"6_sensitivity.png",dpi=155)
+    plt.close(fig)
+
+
+def plot_best_fit(summary):
+    record=next(r for r in summary["sensitivity"] if r["label"]=="N32")
+    surface,mu,k=decode(record["parameters"],"free",32)
+    x,y=render(surface,sphere_directions(16384),mu,k,samples_per_segment=15)
+    fig=plt.figure(figsize=(12,4.3),layout="constrained")
+    ax=fig.add_subplot(121,projection="3d")
+    xv=np.arange(3*32+1)/32
+    yv=np.linspace(0,1,9)
+    xx,yy=np.meshgrid(xv,yv)
+    zz=np.tile(surface.heights[np.arange(len(xv))%32],(len(yv),1))
+    segment_luminance=y.reshape(32,15).mean(axis=1)
+    linear=np.clip(segment_luminance[np.arange(96)%32]/2,0,1)
+    gray=np.where(linear<=0.0031308,12.92*linear,1.055*linear**(1/2.4)-0.055)
+    faces=np.tile(np.column_stack((gray,gray,gray,np.ones(96)))[None,:,:],(8,1,1))
+    ax.plot_surface(xx,yy,zz,facecolors=faces,shade=False,linewidth=0.2,edgecolor="#75828c",rstride=1,cstride=1)
+    ax.set(xlabel="X / period",ylabel="Y / period",zlabel="Height / period",title="Fitted N=32 surface (Z exaggerated)")
+    ax.set_box_aspect((3,1,0.65));ax.view_init(elev=28,azim=-65)
+    ax=fig.add_subplot(122)
+    ax.plot(x,triangle_target(x),color="#172b45",lw=2,label="Provisional target")
+    ax.plot(x,y,color="#0b8b91",lw=1.5,label="Candidate render")
+    ax.set(xlabel="X / period",ylabel="Relative linear luminance",title=f"N=32 candidate | dense RMSE {record['evaluation_metrics']['rmse']:.5f}")
+    ax.legend(fontsize=9);ax.grid(alpha=0.15)
+    fig.suptitle("One additional resolution fit | Visualized geometry and predicted luminance",fontsize=13)
+    fig.savefig(FIGURES/"5_best_fit_N32.png",dpi=160)
     plt.close(fig)
 
 

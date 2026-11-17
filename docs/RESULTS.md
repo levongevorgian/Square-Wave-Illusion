@@ -1,6 +1,6 @@
 # Simulation results
 
-Generated from `results/optimization/analysis.json`. These are deterministic simulations using the provisional target, not measurements from participants.
+Numbers on this page come from `results/data/analysis.json`. These are deterministic simulations using the provisional target, not measurements from participants.
 
 ## Main result
 
@@ -16,11 +16,11 @@ A fitted bounded periodic surface and vMF light field approximate the target wit
 
 Primary comparisons use 16,384 directions and 15 sample points per segment. The N=32 case is an additional one-seed sensitivity run; it does not have the same three-seed search and fine-refinement protocol as the primary N=16 comparison. R-squared is descriptive profile matching, not an inferential test.
 
-![N=32 geometry and luminance](../results/optimization/best_candidate.png)
+![Fitted geometries and luminance](../results/figures/4_model_comparison.png)
+
+![N=32 geometry and luminance](../results/figures/5_best_fit_N32.png)
 
 The 3D view exaggerates the Z axis; its grayscale is illustrative rather than a calibrated display stimulus.
-
-![Fitted geometries and luminance](../results/optimization/fitted_models.png)
 
 ## What the fitted surface tells us
 
@@ -42,24 +42,30 @@ At fixed 15 samples per segment, raising the direction count from 16,384 to 32,7
 | stronger_smoothness | 0.04156 |
 | kappa60 | 0.04154 |
 
-![Sensitivity and convergence](../results/optimization/sensitivity.png)
+![Sensitivity and convergence](../results/figures/6_sensitivity.png)
 
-The sensitivity cases are warm-started, one-seed diagnostics. They do not exhaust the larger parameter spaces. The kappa=60 case changes the permitted upper bound, not the actual fitted kappa fixed at 60. The selected fitted kappa is saved in JSON.
+The sensitivity cases are warm-started, one-seed diagnostics. They do not exhaust the larger parameter spaces. The kappa60 case raises the permitted upper bound on kappa to 60; the fitted kappa itself is saved in the JSON.
 
-## Search status and limits
+## Search status
 
 All three reference free-surface differential-evolution searches hit their iteration cap; the final selected local Powell refinements terminated successfully. A local stopping message is not a proof of global optimality. The three free runs share a fixed-shape initialization. Differences across seeds reflect search variability, not biological uncertainty or confidence intervals.
 
-The target is an ideal mathematical triangle wave with provisional mean, contrast, and phase. No brightness gain or offset is fitted. The current model omits interreflection, specular effects, overhangs, display calibration, and any perceptual response model.
+## Limitations
 
-## Reproducible evidence
+**Target.** The baseline is an ideal triangle-wave luminance profile with mean one, Michelson contrast 0.6, and period one. No brightness gain or offset is fitted. Harmonic approximations and measured luminance profiles would provide additional target conditions.
 
-- `results/optimization/fits.json`: all 12 reference searches, parameters, settings, timings, and solver messages.
-- `results/optimization/analysis.json`: refined candidates, dense evaluations, all seed reevaluations, sensitivity cases, and convergence values.
-- `results/optimization/model_comparison.csv`: primary comparison metrics.
-- `results/optimization/fitted_profiles.csv`: target and prediction samples for primary fits.
-- `results/optimization/sensitivity.json`: additional cases, including all N=32 height and lighting parameters.
-- `results/validation.json`: 15 physical/numerical checks.
-- `test_project.py`: eight regression tests, including synthetic kappa recovery.
+**Shape and illumination.** The surface is an opaque periodic height field, extruded along Y and viewed orthographically. The free surface is not constrained to a rectangular cross-section, so a low luminance residual does not establish a match to a particular perceived shape. Illumination is a single full-sphere von Mises-Fisher radiance distribution with fixed total angular radiance. Interreflection, specular reflection, overhangs, display calibration, and any perceptual response model are outside the current model.
 
-The findings apply to the specified target, surface class, lighting assumptions, and optimization bounds. See [limitations and future work](LIMITATIONS.md).
+**Numerics.** Global free-surface searches reached their iteration budgets and share a fixed-shape initialization. Whole-profile errors must include multiple positions within each segment. The N=32 result is a single additional search rather than a three-seed comparison.
+
+**Interpretation.** The results establish candidate physical image matches under the stated assumptions. Shape and illumination are not uniquely identifiable from one profile. Error metrics describe deterministic luminance matching, not observer performance or a psychological mechanism. No human-participant data are included.
+
+## Future work
+
+Alternative target profiles, other admissible shape classes, multiple illumination lobes, interreflection, higher geometry resolution with more search initializations, stricter error tolerances, and a separate perceptual study of whether the rendered surfaces correspond to the reported percept.
+
+## Where the evidence is
+
+- `results/data/fits.json`: all 12 reference searches, parameters, settings, timings, and solver messages.
+- `results/data/analysis.json`: refined candidates, dense evaluations, all seed reevaluations, sensitivity cases (including all N=32 heights and lighting), convergence values, and the software versions used.
+- `tests/test_project.py`: 15 physical/numerical checks and regression tests, including synthetic kappa recovery.

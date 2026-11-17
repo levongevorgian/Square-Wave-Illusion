@@ -17,14 +17,14 @@ def main():
     env=os.environ.copy()
     env['OPENBLAS_NUM_THREADS']='1'
     env.setdefault('MPLBACKEND','Agg')
-    commands=[['validate.py'],['run_demo.py']]
+    commands=[['src/demo.py']]
     if args.full:
-        commands += [['fit.py'],['analyze.py'],['build_review.py']]
-    commands += [['-m','unittest','-v','test_project.py']]
+        commands += [['src/fit.py'],['src/analyze.py']]
+    commands += [['-m','unittest','discover','-s','tests','-v']]
     for command in commands:
         print('\nRunning '+' '.join(command),flush=True)
         subprocess.run([sys.executable,*command],cwd=ROOT,env=env,check=True)
-    print('\nCompleted. See README.md and docs/RESULTS.md. PDF rebuild is optional: python build_report.py')
+    print('\nCompleted. Figures are in results/figures and data in results/data. PDF rebuild is optional: python src/build_report.py')
 
 
 if __name__=='__main__':main()

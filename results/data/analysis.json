@@ -1,5 +1,13 @@
 {
   "status": "complete",
+  "environment": {
+    "python": "3.12.2",
+    "numpy": "1.26.4",
+    "scipy": "1.13.1",
+    "matplotlib": "3.9.2",
+    "platform": "Darwin",
+    "note": "Reference run; timing depends on machine and BLAS settings."
+  },
   "target_is_provisional": true,
   "config": {
     "segments": 16,

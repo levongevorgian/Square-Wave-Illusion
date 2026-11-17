@@ -1,6 +1,5 @@
 """Reproducible bounded inverse rendering; no human data or perceptual claims."""
 import argparse
-import csv
 import json
 import time
 from pathlib import Path
@@ -8,7 +7,7 @@ import numpy as np
 from scipy.optimize import differential_evolution, minimize
 from model import Surface, sphere_directions, light_direction, render, triangle_target
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_CONFIG = {
     "segments": 16, "directions": 1024, "samples_per_segment": 3,
     "seeds": [11, 29, 47], "maxiter": 160, "popsize": 7,
@@ -143,8 +142,8 @@ def run(config, destination):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--config", type=Path, default=ROOT/"configs"/"reference.json")
-    parser.add_argument("--output", type=Path, default=ROOT/"results"/"optimization")
+    parser.add_argument("--config", type=Path, default=ROOT/"config.json")
+    parser.add_argument("--output", type=Path, default=ROOT/"results"/"data")
     args = parser.parse_args()
     config = json.loads(args.config.read_text())
     run(config, args.output)
