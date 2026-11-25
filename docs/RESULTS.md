@@ -1,5 +1,7 @@
 # Simulation results
 
+See [Limitations](LIMITATIONS.md) for assumptions that affect how these results should be interpreted.
+
 The fit files and figures currently in `results/` were generated before the updated parameterization. They are kept as historical outputs; they do not show the N=32 reference configuration, fitted light intensity, or fitted target vertical shift.
 
 Regenerate the current results from the repository root with:

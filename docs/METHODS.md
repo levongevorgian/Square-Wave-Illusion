@@ -1,6 +1,6 @@
 # Methods and scope
 
-Computational study. No human-participant data were collected. The current target is provisional.
+Computational study. No human-participant data were collected. The current target is provisional. See [Limitations](LIMITATIONS.md) for the model assumptions and interpretation boundaries.
 
 ## Research question
 
