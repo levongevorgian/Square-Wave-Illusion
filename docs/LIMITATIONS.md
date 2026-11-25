@@ -21,3 +21,4 @@ This repository evaluates candidate image matches under a specified physical mod
 No human-participant data were collected. The included references motivate the model but their stimuli, apparatus, and behavioral results are not reproduced. A good fit is a candidate explanation within this model, not evidence that observers perceive that surface or use this mechanism.
 
 The figures and JSON files currently committed under `results/` were generated with an earlier parameterization. Run `python run_all.py --full` to regenerate them before interpreting them as results for the current code.
+
