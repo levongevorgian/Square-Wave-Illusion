@@ -56,3 +56,4 @@ The surface repeats along X, extends along Y, and is viewed orthographically. Al
 Whole-profile errors should use multiple samples within every surface segment. Midpoint-only evaluation can hide large between-midpoint errors. Increase the number of sampled light directions to check convergence of the illumination integral.
 
 See [methods](docs/METHODS.md), [results](docs/RESULTS.md), and [limitations](docs/LIMITATIONS.md).
+
