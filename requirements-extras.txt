@@ -1,3 +1,0 @@
-# Optional dependencies for editing and running the project notebook.
-jupyterlab>=4.0
-ipykernel>=6.0
