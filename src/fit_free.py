@@ -27,3 +27,4 @@ if __name__ == "__main__":
     initial = encode_free(Surface(selected["heights"]), selected["parameters"][-LIGHT_PARAMETER_COUNT:])
     fit_families(config, destination, free_shape.FAMILIES,
                  initial_by_family={"free": initial}, prior=prior, status="complete")
+

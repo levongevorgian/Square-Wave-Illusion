@@ -201,3 +201,4 @@ if __name__ == "__main__":
     parser.add_argument("--output", type=Path, default=ROOT / "results" / "data")
     args = parser.parse_args()
     run(load_config(args.config), output_path(args.output))
+

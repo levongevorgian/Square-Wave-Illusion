@@ -167,3 +167,4 @@ def example_surface(kind="sinusoid", segments=32, amplitude=0.12):
     else:
         raise ValueError(f"Unknown surface: {kind}")
     return Surface(z)
+

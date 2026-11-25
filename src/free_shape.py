@@ -22,3 +22,4 @@ def encode(surface):
 
 def bounds(config):
     return [(-config["height_bound"], config["height_bound"])] * parameter_count(config["segments"])
+

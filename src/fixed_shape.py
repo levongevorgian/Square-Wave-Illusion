@@ -35,3 +35,4 @@ def bounds(family, config):
     if family in ("sinusoid", "square_like"):
         return [(0.0, config["height_bound"]), (0.0, 1.0)]
     raise ValueError(f"Unknown fixed-shape family: {family}")
+

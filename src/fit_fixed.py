@@ -12,3 +12,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     fit_families(load_config(args.config), output_path(args.output), fixed_shape.FAMILIES,
                  status="fixed_complete")
+
